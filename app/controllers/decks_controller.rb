@@ -1,8 +1,7 @@
 class DecksController < ApplicationController
 
   def index
-    # @decks = Deck.all
-    @decks = current_user.decks
+    @decks = current_user&.decks
   end
 
   def show

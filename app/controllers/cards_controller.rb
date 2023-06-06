@@ -6,7 +6,8 @@ class CardsController < ApplicationController
   end
 
   def show
-    @card = @deck.cards.find(params[:id])
+    @deck = current_user.decks.find(params[:deck_id])
+    @card = deck.cards.find(params[:id])
   end
 
   def new
@@ -24,6 +25,7 @@ class CardsController < ApplicationController
   end
 
   def edit
+    @deck = current_user.decks.find(params[:deck_id])
     @card = @deck.cards.find(params[:id])
   end
 
@@ -31,7 +33,7 @@ class CardsController < ApplicationController
     @card = @deck.cards.find(params[:id])
 
     if @card.update(card_params)
-      redirect_to deck_cards_path(@deck), notice: 'Card was successfully updated.'
+      redirect_to deck_path(@deck), notice: 'Card was successfully updated.'
     else
       render :edit
     end

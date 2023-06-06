@@ -6,6 +6,8 @@ class DecksController < ApplicationController
 
   def show
     @deck = current_user.decks.find(params[:id])
+    @cards = @deck.cards
+    @card = @cards.first
   end
 
   def new
@@ -37,6 +39,7 @@ class DecksController < ApplicationController
   end
 
   def destroy
+    @deck = Deck.find(params[:id])
     if current_user == @deck.user
       @deck.destroy
       redirect_to decks_path, notice: "Deck was deleted."

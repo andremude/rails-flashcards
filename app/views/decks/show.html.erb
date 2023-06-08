@@ -1,0 +1,139 @@
+<div class="decks-show-container">
+  <div class="show-new-card">
+  </div>
+
+  <div id="cardModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <%= render 'cards/new' %>
+    </div>
+  </div>
+
+  <div class="new-card-btn">
+    <%= button_to 'Add Card', new_deck_card_path(@deck), method: :get, id: "newCard" %>
+  </div>
+
+  <script>
+    var modal = document.getElementById("cardModal");
+    var btn = document.getElementById("newCard");
+    var span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function(event) {
+      event.preventDefault();
+      modal.style.display = "block";
+    }
+
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+    modal.style.display = "none";
+  </script>
+
+  <div class="card-container">
+    <% shuffled_cards = @deck.cards.shuffle.reject { |card| card.question.blank? || card.answer.blank? } %>
+
+    <% unless shuffled_cards.empty? %>
+      <div class="card-item">
+        <h2><%= shuffled_cards.first.question %></h2>
+        <hr>
+        <h3><%= shuffled_cards.first.answer %></h3>
+      </div>
+
+      <div class="cards-index">
+        <span class="current-card-number"></span>
+        /
+        <span class="total-cards-number"></span>
+      </div>
+      <br>
+      <div class="navigation-buttons">
+        <button class="previous-button"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="next-button"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+      <div class="edit-delete-buttons">
+        <% if shuffled_cards.present? %>
+          <%= button_to edit_deck_card_path(@deck, shuffled_cards), method: :get do %>
+            <i class="fa-solid fa-pen-to-square"></i>
+          <% end %>
+          <%= button_to deck_card_path(@deck, shuffled_cards), method: :delete, form: { "data-turbo-confirm": "Are you sure you want to delete this card?" } do %>
+            <i class="fa-solid fa-trash"></i>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+    <% if shuffled_cards.empty? %>
+      <h3>There are no cards</h3>
+    <% end %>
+  </div>
+
+  <%# <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> %>
+  <script>
+    $(document).ready(function() {
+      var cards = <%= raw shuffled_cards.to_json %>;
+      var currentIndex = 0;
+
+      function updateCard() {
+        var currentCardNumber = currentIndex + 1;
+        var totalCardsNumber = cards.length;
+
+        $('.card-item h2').text(cards[currentIndex].question);
+        $('.card-item h3').text(cards[currentIndex].answer);
+        $('.current-card-number').text(currentCardNumber);
+        $('.total-cards-number').text(totalCardsNumber);
+      }
+
+      $('.next-button').click(function() {
+        currentIndex = (currentIndex + 1) % cards.length;
+        updateCard();
+      });
+
+      $('.previous-button').click(function() {
+        currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+        updateCard();
+      });
+
+      updateCard();
+    });
+  </script>
+</div>
+
+  <%# <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> %>
+  <script>
+    $(document).ready(function() {
+      var cards = <%= raw shuffled_cards.to_json %>;
+      var currentIndex = 0;
+
+      function updateCard() {
+        var currentCardNumber = currentIndex + 1;
+        var totalCardsNumber = cards.length;
+
+        $('.card-item h2').text(cards[currentIndex].question);
+        $('.card-item h3').text(cards[currentIndex].answer);
+        $('.current-card-number').text(currentCardNumber);
+        $('.total-cards-number').text(totalCardsNumber);
+      }
+
+      $('.next-button').click(function() {
+        currentIndex = (currentIndex + 1) % cards.length;
+        updateCard();
+      });
+
+      $('.previous-button').click(function() {
+        currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+        updateCard();
+      });
+
+      updateCard();
+    });
+  </script>
+
+
+
+
+</div>

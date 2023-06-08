@@ -1,0 +1,10 @@
+<%= simple_form_for([@deck, @card]) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <div class="edit-card-form">
+    <%= f.input :question, label: "Question", placeholder: "Question", label: false, input_html: { autocomplete: "off" } %>
+    <%= f.input :answer, label: "Answer", placeholder: "Answer", label: false, input_html: { autocomplete: "off" } %>
+    <%= f.input :tags, label: "Tags", placeholder: "Tags", label: false, input_html: { autocomplete: "off" } %>
+    <%= f.button :submit, 'Update Card' %>
+  </div>
+<% end %>

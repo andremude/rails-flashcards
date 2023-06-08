@@ -7,7 +7,7 @@ class DecksController < ApplicationController
   def show
     @deck = current_user.decks.find(params[:id])
     @cards = @deck.cards
-    @card = @cards.first
+    # @card = @cards.first
   end
 
   def new
@@ -21,7 +21,7 @@ class DecksController < ApplicationController
     if @deck.save
       redirect_to decks_path
     else
-      render :new
+      render partial: 'decks/new'
     end
   end
 

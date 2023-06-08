@@ -18,9 +18,9 @@ class CardsController < ApplicationController
     @card = @deck.cards.new(card_params)
 
     if @card.save
-      redirect_to deck_cards_path(@deck), notice: 'Card was successfully created.'
+      redirect_to deck_path(@deck), notice: 'Card was successfully created.'
     else
-      render :new
+      render partial: 'cards/new'
     end
   end
 

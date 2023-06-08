@@ -1,0 +1,52 @@
+.new-card-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(73, 72, 72);
+  padding: 4px;
+}
+
+.new-card-form input {
+  margin: 2px 0px;
+  width: 400px;
+  height: 25px;
+}
+
+.new-card-form .btn {
+  width: 408px;
+  height: 40px;
+  background-color: #405cf5;
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .new-card-form input {
+    width: 180px;
+  }
+
+  .new-card-form .btn {
+    width: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .new-card-form {
+    flex-direction: column;
+    height: 120px;
+    justify-content: space-around;
+  }
+
+  .new-card-form input {
+    width: 150px;
+  }
+
+  .new-card-form .btn {
+    width: 80px;
+  }
+}

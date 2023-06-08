@@ -1,0 +1,55 @@
+.new-deck-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  height: 60px;
+  background-color: rgb(73, 72, 72);
+}
+
+.new-deck-form input {
+  width: 450px;
+  height: 35px;
+  margin-right: 5px;
+  padding-left: 4px;
+  outline: none;
+}
+
+.new-deck-form .btn {
+  width: 120px;
+  height: 40px;
+  background-color: #405cf5;
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .new-deck-form input {
+    width: 150px;
+  }
+
+  .new-deck-form .btn {
+    width: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .new-deck-form {
+    flex-direction: column;
+    height: 120px;
+    justify-content: space-around;
+  }
+
+  .new-deck-form input {
+    width: 150px;
+  }
+
+  .new-deck-form .btn {
+    width: 80px;
+  }
+}

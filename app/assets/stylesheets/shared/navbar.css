@@ -1,0 +1,41 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(73, 72, 72);
+  height: 80px;
+}
+
+#navLogo {
+  letter-spacing: 2px;
+  font-size: 20px;
+}
+
+.navbar-list {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 4px 12px;
+}
+
+.navbar-link {
+  text-decoration: none;
+  margin: 0 8px;
+  color: white;
+}
+
+#signOutBtn {
+  text-decoration: none;
+  margin: 0 8px;
+  color: white;
+  background-color: rgb(73, 72, 72);
+  background-color: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

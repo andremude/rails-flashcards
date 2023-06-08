@@ -1,17 +1,18 @@
 <nav class="navbar">
   <ul class="navbar-list">
     <li class="navbar-item">
-      <%= link_to "Home", root_path, class: "navbar-link" %>
+      <%= link_to "| FLASHCARDS |", root_path, class: "navbar-link", id: "navLogo" %>
     </li>
     <li class="navbar-item">
-      <a href="#" class="navbar-link">About</a>
+      <%= link_to "Home", root_path, class: "navbar-link" %>
     </li>
   </ul>
   <div>
     <ul class="navbar-list">
       <% if current_user %>
         <li>
-          <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "navbar-link" %>        </li>
+          <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "navbar-link", id: "signOutBtn" %>
+        </li>
       <% else %>
         <li>
           <%= link_to "Log In", new_user_session_path, class: "navbar-link" %>

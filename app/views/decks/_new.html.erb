@@ -1,0 +1,10 @@
+<div class="new-deck-container">
+  <%= simple_form_for(Deck.new) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+    <div class="new-deck-form">
+      <%= f.input :name, placeholder: "Name", label: false, input_html: { autocomplete: "off" }, class: "new-deck-input" %>
+      <%= f.button :submit, 'Add Deck' %>
+    </div>
+  <% end %>
+</div>

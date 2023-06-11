@@ -1,7 +1,4 @@
 <div class="decks-show-container">
-  <div class="show-new-card">
-  </div>
-
   <div id="cardModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
@@ -72,38 +69,6 @@
     <% end %>
   </div>
 
-  <%# <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> %>
-  <script>
-    $(document).ready(function() {
-      var cards = <%= raw shuffled_cards.to_json %>;
-      var currentIndex = 0;
-
-      function updateCard() {
-        var currentCardNumber = currentIndex + 1;
-        var totalCardsNumber = cards.length;
-
-        $('.card-item h2').text(cards[currentIndex].question);
-        $('.card-item h3').text(cards[currentIndex].answer);
-        $('.current-card-number').text(currentCardNumber);
-        $('.total-cards-number').text(totalCardsNumber);
-      }
-
-      $('.next-button').click(function() {
-        currentIndex = (currentIndex + 1) % cards.length;
-        updateCard();
-      });
-
-      $('.previous-button').click(function() {
-        currentIndex = (currentIndex - 1 + cards.length) % cards.length;
-        updateCard();
-      });
-
-      updateCard();
-    });
-  </script>
-</div>
-
-  <%# <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> %>
   <script>
     $(document).ready(function() {
       var cards = <%= raw shuffled_cards.to_json %>;
@@ -133,7 +98,32 @@
     });
   </script>
 
+  <script>
+    $(document).ready(function() {
+      var cards = <%= raw shuffled_cards.to_json %>;
+      var currentIndex = 0;
 
+      function updateCard() {
+        var currentCardNumber = currentIndex + 1;
+        var totalCardsNumber = cards.length;
 
+        $('.card-item h2').text(cards[currentIndex].question);
+        $('.card-item h3').text(cards[currentIndex].answer);
+        $('.current-card-number').text(currentCardNumber);
+        $('.total-cards-number').text(totalCardsNumber);
+      }
 
+      $('.next-button').click(function() {
+        currentIndex = (currentIndex + 1) % cards.length;
+        updateCard();
+      });
+
+      $('.previous-button').click(function() {
+        currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+        updateCard();
+      });
+
+      updateCard();
+    });
+  </script>
 </div>
